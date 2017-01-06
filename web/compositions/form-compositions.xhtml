@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>#{str.compostionFormTitle}</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/templates/template.xhtml">
+            <ui:define name="contenido">
+                <h2>#{str.compositionFormHeader}</h2>
+                <p:fieldset legend="#{str.compositionLegendForm}">
+                    <h:form>
+                        <h:panelGrid columns="4">
+
+                            <p:inputText placeholder="#{str.compositionRelationPrompt}"
+                                         value="#{compositionBean.composition.relation}" 
+                                         style="padding-top:0px; height:24px" ></p:inputText>
+                                         <p:inputText placeholder="#{str.compositionInterredPrompt}"
+                                         value="#{compositionBean.composition.interred}" 
+                                         style="padding-top:0px; height:24px" ></p:inputText>
+
+
+                            <p:selectOneMenu value="#{compositionBean.composition.property.idProperty}" style="height:29px">
+                                <f:selectItems value="#{compositionBean.properties}" var="a"
+                                               itemLabel="#{a.transitive}" itemValue="#{a.idProperty}"></f:selectItems>
+                            </p:selectOneMenu>
+
+                        </h:panelGrid>
+                        <p:commandButton value="#{str.buttonSave}"
+                                         action="#{compositionBean.guardar()}"></p:commandButton>
+                        <p:commandButton value="#{str.buttonDelete}"
+                                         action="#{compositionBean.eliminar()}"></p:commandButton>
+                        <p:commandButton value="#{str.buttonCancel}"
+                                         action="#{compositionBean.cancelar()}"></p:commandButton>
+
+                    </h:form>
+                </p:fieldset>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
